@@ -1,0 +1,54 @@
+.page-07-warranty {
+    background-image: url(/img/Pattern_02.png);
+    opacity: 80%;
+    background-repeat: repeat;
+    .section__body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .section__flex {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        gap: 10px;
+        .flex__image {
+            align-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flex__title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .flex__paragraph {
+            font-weight: 400;
+            color: $color-grey;
+        }
+    }
+}
+
+@media (min-width:768px) {
+    .page-07-warranty {
+        .section__flex {
+            flex-direction: row;
+            gap: 40px;
+            .flex__image {
+                flex: 0 0 90px;
+                margin: 0;
+            }
+            .flex__text {
+                flex-grow: 1;
+                align-self: center;
+                .flex__title {
+                    text-align: left;
+                }
+                .flex__paragraph {
+                    text-align: justify;
+                }
+            }
+        }
+    }
+}

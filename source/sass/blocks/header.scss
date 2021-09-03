@@ -1,0 +1,33 @@
+.header {
+    background-color: $color-menu;
+    z-index: 1;
+    .header__body {
+        //height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo {
+        z-index: 999;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .header .menu {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .header .logo {
+        flex-basis: 50px;
+    }
+    .header .menu {
+        display: flex;
+    }
+    .header .burger {
+        display: none;
+    }
+}

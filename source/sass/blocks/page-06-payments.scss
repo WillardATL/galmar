@@ -1,0 +1,70 @@
+.page-06-payments {
+    .section__body {
+        @include flex(column, center, center);
+    }
+    .section__box {
+        @include flex(column, center, 0);
+        position: relative;
+        border: 2px solid $color-green-brand;
+        padding: 30px 10px;
+        margin: 40px 0;
+        //width: 100%;
+        &-inner {
+            @include flex(column, center, center);
+            gap: 10px;
+        }
+        .section__subtitle {
+            margin: 0 auto;
+            position: absolute;
+            top: -30px;
+            padding: 5px;
+            background-color: $color-white;
+            max-width: 240px;
+            text-align: center;
+        }
+    }
+    .row {
+        align-items: center;
+        justify-content: flex-start;
+        align-self: flex-start;
+        gap: 20px;
+        max-width: 410px;
+        .row__img {
+        width: 40px;
+        }
+        .row__link {
+            color: $color-link;
+            border-bottom: 1px dashed $color-link;
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .page-06-payments {
+        .section__box {
+            padding: 30px 60px;
+            .section__subtitle {
+                top: -20px;
+                max-width: 500px;
+            }
+        }
+        
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .page-06-payments {
+        .section__box {
+            padding: 30px 90px;
+        }
+        .row {
+            gap: 30px;
+            max-width: 600px;
+            min-width: 600px;
+            .row__img {
+            width: 80px;
+            }
+        }
+        
+    }
+}

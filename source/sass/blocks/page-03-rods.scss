@@ -1,0 +1,124 @@
+.page-03-rods {
+    background-image: url(/img/Pattern_02.png);
+    opacity: 80%;
+    background-repeat: repeat;
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 20px;
+        justify-items: start;
+        margin-bottom: 10px;
+        .grid__cell {
+            justify-self: stretch;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .flex {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .flex__cell {
+            align-self: center;
+            width: 100px;
+            .flex__img {
+                max-width: 100%;
+            }
+        }
+        .flex__title {
+            margin-bottom: 10px;
+        }
+        .flex__paragraph {
+            @include font(16px, 400, 20px);
+            color: $color-grey;
+        }
+    }
+    .row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        align-self: center;
+        margin-top: 10px;
+        .row__paragraph {
+            font-size: 14px;
+            color: $color-grey;
+        }
+        .row__link {
+            align-self: flex-end;
+            flex: 0 0 30px;
+            &-img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+@media (min-width:768px) {
+    .page-03-rods {
+        .grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            .grid__cell {
+                display: flex;
+                align-items: flex-start;
+                grid-row-start: span 2;
+                .grid__img {
+                    max-height: 570px;
+                }
+            }
+        }
+        .row .row__link {
+            flex: 0 0 50px;
+        }
+        
+    }
+}
+
+@media (min-width:1024px) {
+    .page-03-rods {
+        .grid {
+            grid-template-columns: 0.6fr 1fr 1fr;
+        }
+        .flex .flex__cell {
+            width: 150px;
+            align-self: flex-start;
+        }
+        
+    }
+}
+
+/*    .page-03-rods {
+        .section__body {
+            display: grid;
+            grid-template-columns: 0.25fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
+            grid-column-gap: 10px;
+            grid-row-gap: 5px;
+
+            &>.section__img {
+                display: block;
+            }
+
+            &>div:nth-of-type(1) {
+                grid-row-start: span 4;
+                align-self: flex-start;
+                padding-top: 5px;
+                padding-bottom: 20px;
+            }
+
+            &>div:nth-of-type(6) {
+                grid-row-start: 5;
+                grid-column-start: 2;
+            }
+
+            .section__infoblock {
+                .section__img {
+                    max-width: 100px;
+                }
+            }
+        }
+    }
+}*/

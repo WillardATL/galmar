@@ -1,0 +1,137 @@
+.page-05-catalog {
+    background-image: url(/img/Pattern_02.png);
+    opacity: 80%;
+    background-repeat: repeat;
+    .section__body {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 300px);
+        grid-template-rows: auto;
+        gap: 50px;
+        justify-content: center;
+    }
+
+    .item {
+        min-width: 290px;
+        max-width: 300px;
+        
+        .item__describe {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 5px;
+            .item__img {
+                width: 100%;
+                height: 100%;
+            }
+            .item__paragraph {
+                color: $color-white;
+                font-weight: 400;
+                position: absolute;
+                z-index: 2;
+                top: 210px;
+                left: 0px;
+                padding: 20px;
+                text-align: left;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                background-color: $color-green-brand;
+                top: 0;
+                opacity: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            &:hover,
+            &:focus {
+                .item__paragraph {
+                    top: 0px;
+                    transition: all 0.5s;
+                }
+                &::after {
+                    opacity: 0.8;
+                    transition: all 0.5s;
+                }
+            }
+        }
+        .item__title {
+            color: $color-green-brand;
+        }
+        .item__price {
+            margin: 10px 0;
+            font-weight: 500;
+            &-01::after {
+                content: $price-01 + 'грн. з ПДВ';
+            }
+            &-02::after {
+                content: $price-02 + 'грн. з ПДВ';
+            }
+            &-03::after {
+                content: $price-03 + 'грн. з ПДВ';
+            }
+            &-04::after {
+                content: $price-04 + 'грн. з ПДВ';
+            }
+            &-05::after {
+                content: $price-05 + 'грн. з ПДВ';
+            }
+            &-06::after {
+                content: $price-06 + 'грн. з ПДВ';
+            }
+        }
+        .item__button {
+            height: 30px;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 500;
+            color: $color-white;
+            border: none;
+            background-color: $color-grey;
+            transition: all 0.3s ease-in-out;
+
+            &:hover,
+            &:focus,
+            &:active {
+                cursor: pointer;
+                color: $color-white;
+                background-color: $color-green-brand;
+            }
+        }
+    }
+
+}
+/*
+
+
+
+
+    .section__infoblock {
+        .section__text {
+            align-self: flex-start;
+
+            p {
+                text-align: justify;
+            }
+        }
+    }
+}
+
+@media (min-width:768px) {
+    catalog .section__body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+
+        .section__infoblock {
+            flex-direction: column;
+            max-width: 300px;
+        }
+    }
+
+}
+*/
