@@ -89,36 +89,3 @@
         
     }
 }
-
-/*    .page-03-rods {
-        .section__body {
-            display: grid;
-            grid-template-columns: 0.25fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
-            grid-column-gap: 10px;
-            grid-row-gap: 5px;
-
-            &>.section__img {
-                display: block;
-            }
-
-            &>div:nth-of-type(1) {
-                grid-row-start: span 4;
-                align-self: flex-start;
-                padding-top: 5px;
-                padding-bottom: 20px;
-            }
-
-            &>div:nth-of-type(6) {
-                grid-row-start: 5;
-                grid-column-start: 2;
-            }
-
-            .section__infoblock {
-                .section__img {
-                    max-width: 100px;
-                }
-            }
-        }
-    }
-}*/
