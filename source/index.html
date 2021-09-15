@@ -502,13 +502,14 @@
                         <br>
                         <p class="column__paragraph">ГРАФІК РОБОТИ: <br>пн-пт з 9:00 до 17:00</p>
                     </div>
-                    <form class="section__form form" id="form" name="form">
+                    <form class="section__form form" id="form" name="form" action="sendmail.php" method="POST" enctype="multipart/form-data">
                         <h3 class="form__subtitle">ЗВОРОТНІЙ ЗВ'ЯЗОК</h3>
                         <br>
-                        <input class="form__input _req" id="userName" name="name" type='text' placeholder="Ваше ім’я*">
-                        <input class="form__input _req _phone" id="userPhone" name="tel" type="tel" placeholder="Ваш телефон*">
-                        <textarea class="form__text" name="text" type='text' placeholder="Ваше запитання"></textarea>
+                        <label class="form__label"><input class="form__input" id="userName" name="name" type='text' data-validate-field="name" placeholder="Ваше ім’я*"></label>
+                        <label class="form__label"><input class="form__input" id="userPhone" name="phone" type="tel" data-validate-field="tel" placeholder="Ваш телефон*"></label>
+                        <textarea class="form__text" name="message" type='text' placeholder="Ваше запитання"></textarea>
                         <button class="form__button" id="btnForm" type="submit">Відправити</button>
+                        <input type="hidden" name="formData" value="Повідомлення з сайту galmar.com.ua">
                     </form>
                 </div>
             </div>
@@ -516,6 +517,9 @@
 
     </div>
 
+    <script src="js/just-validate.min.js"></script>
+    <script src="js/inputmask.min.js"></script>
+    <script src="js/sweet-alert.min.js" ></script>
     <script src="js/main.js"></script>
 
 </body>

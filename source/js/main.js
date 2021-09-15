@@ -1,3 +1,4 @@
+// script for burger menu
 let mobileBody=document.getElementById("body");
 let burgerButton=document.getElementById("burgerCheckbox");
 let mobileMenu=document.getElementById('burgerMenuList');
@@ -12,76 +13,62 @@ mobileMenu.onclick = function() {
   }
 
 
-  // script for feedback form
+// script for input mask
+let selector=document.querySelectorAll('input[type="tel"]');
+let im=new Inputmask('+38 (999) 999-99-99');
+im.mask(selector);
 
-  document.addEventListener('DOMContentLoaded', function() {
- 
-    const form = document.getElementById('form');
-	  form.addEventListener('submit', formSend);
+// script for input validations
+let validateForms = function(selector, rules) {
+	new window.JustValidate(selector, {
+		rules: rules,
+    messages: {
+      name: {
+        required: 'Заповніть це поле',
+        minLength:'Заповніть це поле',
+        strength: 'Перевірте дані!'
+      },
+      tel: {
+        required: 'Заповніть це поле',
+        strength: 'Перевірте дані!'}
+    },
+		submitHandler: function(form) {
+			let formData = new FormData(form);
 
-    async function formSend(e) {
-      e.preventDefault();
+			let xhr = new XMLHttpRequest();
 
-      let error = formValidate(form);
-      
-      if (error === 0) {
-        form.classList.add('_sending');
-        let response = await fetch('sendmail.php', {
-          method: 'POST',
-          body: formData
-        });
-        if (response.ok) {
-          let result = await response.json();
-          alert(result.message);
-          formPreview.innerHTML = '';
-          form.reset();
-          form.classList.remove('_sending');
-        } else {
-          alert("Помилка!");
-          form.classList.remove('_sending');
-        }
-      } else {
-        alert('Заповніть будь ласка імя та номер телефону');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						Swal.fire(
+              'Дякуємо!',
+              'Мы отримали ваше повідомлення і передзвонимо найближчим часом.',
+              'success'
+              );
+					}
+				}
+			}
+
+			xhr.open('POST', 'sendmail.php', true);
+			xhr.send(formData);
+
+			form.reset();
+		}
+	});
+}
+
+validateForms('.form', { 
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }, 
+    name: {
+      required: true,
+      minLength: 3,
+      strength: {
+        custom: '^[^0-9]+$'
       }
     }
-
-
-    function formValidate(form) {
-      let error = 0;
-      let formReq = document.querySelectorAll('._req');
-
-      for (let index = 0; index < formReq.length; index++) {
-        const input = formReq[index];
-        formRemoveError(input);
-  
-        if (input.classList.contains('_phone')) {
-          if (phoneTest(input)) {
-            formAddError(input);
-            error++;
-          }
-        } else {
-          if (input.value === '') {
-            formAddError(input);
-            error++;
-          }
-        }
-      }
-      return error;
-    }
-
-    function formAddError(input) {
-      //input.parentElement.classList.add('_error');
-      input.classList.add('_error');
-    }
-
-    function formRemoveError(input) {
-      //input.parentElement.classList.remove('_error');
-      input.classList.remove('_error');
-    }
-
-    // checking correct fill-up phone input
-    function phoneTest(input) {
-      return  !/^\d{3}[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/.test(input.value);
-    
-    }
-  })
+});
