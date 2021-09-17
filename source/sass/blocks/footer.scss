@@ -78,6 +78,11 @@
                 right: 5px;
                 color: rgb(255, 1, 1) !important;
             }
+            .js-validate-error-field {
+                color: rgb(255, 1, 1) !important;
+                border: 1px solid rgb(255, 1, 1) !important;
+                box-sizing: border-box;
+            }
         }
 
 

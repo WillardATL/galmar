@@ -51,14 +51,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $send = mail ($to, $subject, $message, $headers);
 if ($send == 'true')
         {
-        echo '<h1 class="success-head">Спасибо!</h1><p class="success-p">Наш менеджер свяжется с вами в ближайшее время</p><button data-remodal-action="confirm" class="btn btn-quickorder" style="margin-top:20px;">Хорошо</button>';
+        echo '<h1 class="success-head">Дякуємо!</h1><p class="success-p">Ми отримали ваше повідомлення і передзвонимо найближчим часом.</p><button data-remodal-action="confirm" class="btn btn-quickorder" style="margin-top:20px;">Хорошо</button>';
         }
         else
         {
-        echo '<center><p class="fail"><b>Ошибка. Сообщение не отправлено!</b></p></center>';
+        echo '<center><p class="fail"><b>Помилка! Повідомлення не відправлено!</b></p></center>';
         }
     } else {
         http_response_code(403);
-        echo "Попробуйте еще раз";
+        echo "Спробуйте ще раз";
 }
 ?>

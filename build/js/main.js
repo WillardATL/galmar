@@ -40,11 +40,12 @@ let validateForms = function(selector, rules) {
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === 4) {
 					if (xhr.status === 200) {
-						Swal.fire(
-              'Дякуємо!',
-              'Мы отримали ваше повідомлення і передзвонимо найближчим часом.',
-              'success'
-              );
+						Swal.fire({
+              title: 'Дякуємо!',
+              text: 'Мы отримали ваше повідомлення і передзвонимо найближчим часом.',
+              success: 'success',
+              scrollbarPadding: false,
+            });
 					}
 				}
 			}
