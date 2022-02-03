@@ -12,6 +12,16 @@
         padding-top: 5px;
         padding-bottom: 5px;
     }
+    .cart-icon__link {
+        display: flex;
+        cursor: pointer;
+    }
+    .cart-icon__img {
+        margin-right: 10px;
+    }
+    .cart-icon__quantity {
+        color: $color-white;
+    }
 }
 
 @media only screen and (max-width: 1023px) {

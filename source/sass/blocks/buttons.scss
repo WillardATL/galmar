@@ -1,3 +1,11 @@
+.button {
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+
 .main-button {
     position: absolute;
     bottom: 70px;
