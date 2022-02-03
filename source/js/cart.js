@@ -132,3 +132,13 @@ function emptyCartCheck() {
     }
   }
 
+//action after purchase button clicked
+document.getElementById("btnPurchase").addEventListener('click', purchaseClicked)
+function purchaseClicked() {
+    alert('Thank you for your purchase');
+    let cartItems = document.querySelector('.cart__items');
+    while (cartItems.hasChildNodes()) {
+        cartItems.removeChild(cartItems.firstChild)
+    }
+    emptyCartCheck ();
+  }
