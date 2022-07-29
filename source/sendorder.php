@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = "
 		<html>
             <head>
-                <title>Повідомлення з сайту galmar</title>
+                <title>Замовлення з сайту galmar</title>
                 <style type='text/css'>
                 div { background: #dedede; }
                 th { background: #000; text-align: right; width: 200px; color:#fff; }

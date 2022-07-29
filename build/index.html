@@ -513,8 +513,8 @@
 
     </div>
 
-    <div class="cart">
-        <div class="cart__body">
+    <form class="cart cart-hidden" id="cart">
+        <div class="cart__body" id="cart-body">
             <div class="cart__header grid-row">
                 <p class="cart__header-text">товар</p>
                 <p class="cart__header-text">ціна</p>
@@ -522,12 +522,25 @@
             </div>
             <div class="cart__items" id="cartItems"></div>
             <div class="cart__total flex-row">
-                <p class="cart__total-text">Всього:</p>
+                <p class="cart__total-text">Загальна сума:</p>
                 <p class="cart__total-text cart__total-text_normal" id="cartTotalCost">0 грн.</p>
             </div>
-            <button class="cart__button btn-purchase button" id="btnPurchase" type="button" disabled="">Купити</button>
+            <div class="cart__customer-info">
+                <div class="flex-row">
+                    <label class="cart__label"><input class="cart__input" id="userName" name="name" type="text" data-validate-field="name" required="" placeholder="Ваше ім’я*"></label>
+                    <label class="cart__label"><input class="cart__input" id="companyName" name="company" type="text" placeholder="Назва компанії"></label>
+                </div>
+                <div class="flex-row">
+                    <label class="cart__label"><input class="cart__input" id="userPhone" name="phone" type="tel" data-validate-field="tel" placeholder="Ваш телефон*"></label>
+                    <label class="cart__label"><input class="cart__input" id="userMail" name="email" type="email" data-validate-field="mail" placeholder="Ваш e-mail*"></label>    
+                </div>
+            </div>
+            <div class="flex-row">
+                <textarea class="cart__message" name="message" type="text" placeholder="Коментар"></textarea>
+            </div>
+            <button class="cart__button btn-purchase button" id="btnPurchase" type="submit" disabled="">Купити</button>
         </div>
-    </div>
+    </form>
 
 <!--    <div class="popup info" id="in_cart">
         <a class="close"><img src="img/close.png"></a>

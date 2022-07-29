@@ -1,28 +1,39 @@
 // cart styles
-
-  .cart {
+.cart {
+    opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
-    //height: 100vh;
-    //position: absolute;
-    //top: 0;
-    //left: 0;
-   // display: none;
-  }
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(90, 90, 90, 0.8);
+    z-index: 2;
+}
+.cart-hidden {
+  transition: all 0.5s ease-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.cart-shown {
+  transition: all 0.5s ease-out;
+  opacity: 1;
+  visibility: visible;
+}
 
-  .cart__body {
-    width: 500px;
-    padding: 25px;
-    background-color: #eff0f4;
-    border-radius: 30px;
-  }
+.cart__body {
+  width: 500px;
+  padding: 25px;
+  background-color: #eff0f4;
+  border-radius: 10px;
+}
 
-  .cart__items {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #cacaca;
-  }
+.cart__items {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #cacaca;
+}
 
 .cart__header {
   text-align: center;
@@ -66,13 +77,12 @@
 
 .cart__total {
   font-weight: 600;
-  text-transform: capitalize;
+  font-size: 1.1rem;
   margin-bottom: 50px;
   justify-content: flex-end;
   &-text {
     margin-right: 10px;
     &_normal {
-      text-transform: none;
       font-weight: normal;
     }
   }
@@ -86,16 +96,55 @@
   height: 30px;
   border-radius: 6px;
   background-color: $color-green-brand;
-  color: #fff;
+  color: $color-white;
   &:disabled {
     background-color: $color-grey;
     cursor: auto;
   }
 }
 
+.cart__message {
+  height: 50px;
+      line-height: 1.5em;
+      padding: 10px 15px;
+      width: 100%;
+      border: none;
+      margin-bottom: 30px;
+      color: $color-grey;
+      font-weight: 330;
+}
+
+.cart__label {
+  position: relative;
+  width: 100%;
+  .cart__input {
+      line-height: 1.5em;
+      padding: 10px 15px;
+      width: 100%;
+      //background: $color-grey;
+      border: none;
+      margin-bottom: 10px;
+      color: $color-grey;
+      font-weight: 330;
+  }
+
+  .js-validate-error-label {
+      position: absolute;
+      top: 20%;
+      right: 5px;
+      color: rgb(255, 1, 1) !important;
+  }
+  .js-validate-error-field {
+      color: rgb(255, 1, 1) !important;
+      border: 1px solid rgb(255, 1, 1) !important;
+      box-sizing: border-box;
+  }
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
+  gap: 20px;
 }
 
 .grid-row {

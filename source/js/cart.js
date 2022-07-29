@@ -33,7 +33,7 @@ function addItemToCart(itemName, itemPrice, imageSrc) {
     }
     let cartRowContents = `
     <img class="cart-item-image" src="${imageSrc}" width="80" height="80">
-        <p class="cart__item-name">${itemName}</p>
+        <p class="cart__item-name" name="item-name">${itemName}</p>
         <p class="cart__item-price">${itemPrice + " грн."}</p>
         <div class="cart__item-quantity flex-row">
             <input class="cart__item-quantity-input" type="number" min="1" value="1">
@@ -135,10 +135,29 @@ function emptyCartCheck() {
 //action after purchase button clicked
 document.getElementById("btnPurchase").addEventListener('click', purchaseClicked)
 function purchaseClicked() {
-    alert('Thank you for your purchase');
-    let cartItems = document.querySelector('.cart__items');
-    while (cartItems.hasChildNodes()) {
-        cartItems.removeChild(cartItems.firstChild)
-    }
-    emptyCartCheck ();
+    //alert('Thank you for your purchase');
+    //let cartItems = document.querySelector('.cart__items');
+    //while (cartItems.hasChildNodes()) {
+        //cartItems.removeChild(cartItems.firstChild)
+    //}
+    //emptyCartCheck ();
   }
+
+
+  //show and hide the Cart
+let cart = document.getElementById('cart');
+let cartBody = document.getElementById('cart-body');
+let cartIcon = document.getElementById('cart-icon');
+
+cartIcon.addEventListener("click", toggleCartVisibility);
+function toggleCartVisibility() {
+  cart.classList.remove('cart-hidden');
+  cart.classList.add('cart-shown');
+  document.addEventListener( 'click', (e) => {
+    let clickedElement = e.target;
+    if (clickedElement == cart ) {
+      cart.classList.remove('cart-shown');
+      cart.classList.add('cart-hidden');
+    }
+  });
+}
