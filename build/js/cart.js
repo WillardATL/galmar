@@ -1,5 +1,7 @@
 // script for the Cart
 
+
+
 //add listener for all catalog buttons
 let addToCartButtons = document.getElementsByClassName('btn-addToCart');
 for (let i = 0; i < addToCartButtons.length; i++) {
@@ -15,53 +17,61 @@ function addToCartClicked(event) {
   let itemPrice = items[index].price;
   let item = button.parentElement;
   let imageSrc = item.getElementsByClassName('item__img')[0].src;
-  addItemToCart(itemName, itemPrice, imageSrc)
+  addItemToCart(itemName, itemPrice, imageSrc);
 }
 
-// add items to the cart
+/* --Add and deliting items from the cart--*/
+
 function addItemToCart(itemName, itemPrice, imageSrc) {
-    let cartRow = document.createElement('div');
-    cartRow.classList.add('cart__item');
-    cartRow.classList.add('grid-row');
-    let cartItems = document.getElementById('cartItems');
-    let cartItemNames = cartItems.getElementsByClassName('cart__item-name');
-    for (let i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == itemName) {
-            alert('This item is already added to the cart')
-            return
-        }
+  let cartRow = document.createElement('div');
+  cartRow.classList.add('cart__item');
+  cartRow.classList.add('grid-row');
+  let cartRowContent = `
+  <img class="cart-item-image" src="${imageSrc}" width="80" height="80">
+      <p class="cart__item-name" name="item-name">${itemName}</p>
+      <p class="cart__item-price">${itemPrice + " грн."}</p>
+      <div class="cart__item-quantity flex-row">
+          <input class="cart__item-quantity-input" type="number" min="1" value="1">
+          <button class="cart__item-quantity-button btn-delete button" type="button"></button>
+      </div>`
+  cartRow.innerHTML = cartRowContent;
+
+  let cartItems = document.getElementById('cartItems');                         
+  let cartItemsNumber = cartItems.getElementsByClassName('cart__item').length;
+  let dublicateItem;
+  if (cartItemsNumber == 0) {
+    cartItems.append(cartRow) } else {
+    for (let i=0; i < cartItemsNumber; i++) {
+      let cartItemName = cartItems.getElementsByClassName('cart__item-name')[i].innerHTML;
+      if (cartItemName == itemName) {
+        cartItems.getElementsByClassName('cart__item-quantity-input')[i].value++;
+        dublicateItem = cartItemName;
+        break;
+        } else {
+          dublicateItem = "no dublicate"}
     }
-    let cartRowContents = `
-    <img class="cart-item-image" src="${imageSrc}" width="80" height="80">
-        <p class="cart__item-name" name="item-name">${itemName}</p>
-        <p class="cart__item-price">${itemPrice + " грн."}</p>
-        <div class="cart__item-quantity flex-row">
-            <input class="cart__item-quantity-input" type="number" min="1" value="1">
-            <button class="cart__item-quantity-button btn-delete button" type="button"></button>
-        </div>`
-    cartRow.innerHTML = cartRowContents;
-    cartItems.append(cartRow);
-
-    let cartItemDelete = cartRow.querySelector('.btn-delete');
-    cartItemDelete.addEventListener('click', removeCartItem);
-
-    let cartItemQuantity = cartRow.querySelector('.cart__item-quantity-input');
-    cartItemQuantity.addEventListener('change', quantityChanged);
-
-    emptyCartCheck()
-    updateTotalCost()
-    updateTotalQuantity()
+    if (dublicateItem == "no dublicate") {
+      cartItems.append(cartRow);
+    }
+    dublicateItem = "";
   }
-  
 
-//delete item from the cart
-function removeCartItem(event) {
+  updateTotalCost()
+  updateTotalQuantity()
+
+  let cartItemDelete = cartRow.querySelector('.btn-delete');
+  cartItemDelete.addEventListener('click', removeCartItem);
+  let cartItemQuantity = cartRow.querySelector('.cart__item-quantity-input');
+  cartItemQuantity.addEventListener('change', quantityChanged);
+  function removeCartItem(event) {
     let buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.remove();
     updateTotalCost()
     updateTotalQuantity()
     emptyCartCheck()
   }
+}  
+   
 
 //tracking if items quantity was chenged
 function quantityChanged(event) {
@@ -75,13 +85,13 @@ function quantityChanged(event) {
 
 //update information about the cart total cost
 function updateTotalCost() {
-    let cartItemContainer = document.querySelector('.cart__items');
-    let cartRows = cartItemContainer.getElementsByClassName('grid-row');
-    totalCost = 0;
+    let cartItems = document.querySelector('.cart__items');
+    let cartRows = cartItems.getElementsByClassName('grid-row');
+    let totalCost = 0;
     for (let i = 0; i < cartRows.length; i++) {
         let cartRow = cartRows[i];
         let price = cartRow.querySelector('.cart__item-price');
-        let itemPrice = parseFloat(price.innerText.replace('грн.', ''));
+        let itemPrice = parseFloat(price.innerHTML.replace('грн.', ''));
         let itemQuantity = cartRow.querySelector('.cart__item-quantity-input').value;
         let itemCost = itemPrice * itemQuantity;
         totalCost = totalCost + itemCost;
@@ -153,6 +163,7 @@ cartIcon.addEventListener("click", toggleCartVisibility);
 function toggleCartVisibility() {
   cart.classList.remove('cart-hidden');
   cart.classList.add('cart-shown');
+  updateTotalCost();
   document.addEventListener( 'click', (e) => {
     let clickedElement = e.target;
     if (clickedElement == cart ) {
