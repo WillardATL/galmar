@@ -58,6 +58,7 @@ function addItemToCart(itemName, itemPrice, imageSrc) {
 
   updateTotalCost()
   updateTotalQuantity()
+  emptyCartCheck()
 
   let cartItemDelete = cartRow.querySelector('.btn-delete');
   cartItemDelete.addEventListener('click', removeCartItem);
@@ -142,18 +143,6 @@ function emptyCartCheck() {
     }
   }
 
-//action after purchase button clicked
-document.getElementById("btnPurchase").addEventListener('click', purchaseClicked)
-function purchaseClicked() {
-    //alert('Thank you for your purchase');
-    //let cartItems = document.querySelector('.cart__items');
-    //while (cartItems.hasChildNodes()) {
-        //cartItems.removeChild(cartItems.firstChild)
-    //}
-    //emptyCartCheck ();
-  }
-
-
   //show and hide the Cart
 let cart = document.getElementById('cart');
 let cartBody = document.getElementById('cart-body');
@@ -172,3 +161,17 @@ function toggleCartVisibility() {
     }
   });
 }
+
+//action after purchase button clicked
+document.getElementById("btnPurchase").addEventListener('click', purchaseClicked)
+function purchaseClicked() {
+    alert('Thank you for your purchase');
+    let cartItems = document.querySelector('.cart__items');
+    while (cartItems.hasChildNodes()) {
+        cartItems.removeChild(cartItems.firstChild)
+    }
+    cart.classList.remove('cart-shown');
+    cart.classList.add('cart-hidden');
+    document.getElementById('cart').reset();
+    emptyCartCheck ();
+  }
