@@ -1,7 +1,150 @@
-// script for the Cart
+// SELECT ELEMENTS
+const productsEl = document.querySelector(".products");
+const cartItemsEl = document.querySelector(".cart__items");
+const subtotalEl = document.querySelector(".cart__total-cost");
+const totalItemsInCartEl = document.querySelector(".cart-icon__quantity");
+const cartButtonEl = document.querySelector(".cart__button");
+
+// RENDER PRODUCTS
+function renderProducts() {
+  products.forEach((product) => {
+    productsEl.innerHTML += `
+      <div class="item">
+        <div class="item-wrap">
+          <img class="item__img" src="${product.image}" alt="${product.name}">
+          <p class="item__description">${product.description}</p>
+        </div>
+        <h3 class="item__name">${product.name}</h3>
+        <p class="item__price">${product.price} грн.</p>
+        <button class="item__button btn-addToCart button" onclick="addToCart(${product.id})">В корзину</button>
+    </div>
+        `;
+  });
+}
+renderProducts();
+
+// CART ARRAY
+let cart = JSON.parse(localStorage.getItem("CART")) || [];
+updateCart();
+
+// ADD TO CART
+function addToCart(id) {
+  if (cart.some((item) => item.id === id)) {   // here we check if product is already exist in cart
+    alert("Product is already in the cart!")
+  } else {
+  const item = products.find(product => product.id === id);
+
+
+  cart.push({
+    ...item,
+    numberOfUnits: 1,
+    });
+  }
+  updateCart();
+}
+
+// UPDATE CART
+function updateCart() {
+  renderCartItems();
+  renderSubtotal();
+
+  // save cart to local storage
+  localStorage.setItem("CART", JSON.stringify(cart));
+}
+
+// CALCULATE AND RENDER SUBTOTAL AND NUMBER OF ITEMS IN CART
+function renderSubtotal() {
+  let totalPrice = 0, totalCost=0, totalItems = 0;
+  
+  cart.forEach((item) => {
+    totalPrice += item.price * item.numberOfUnits;
+    totalItems += item.numberOfUnits;
+  });
+    totalPrice = totalPrice.toFixed(2);
+    totalCost = totalPrice.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+  subtotalEl.innerHTML = `${totalCost} грн.`;
+
+  let totalItemsText = "";
+  if (totalItems==1) {
+    totalItemsText = "товар" 
+  } else if (totalItems==2 || totalItems==3 || totalItems==4)  {
+    totalItemsText = "товари"
+  }  else {
+    totalItemsText = "товарів"
+  }
+  totalItemsInCartEl.innerHTML = `${totalItems} ${totalItemsText}`;
+
+  // enable purchase button when items is appear in cart
+  if (totalItems !== 0) {
+      cartButtonEl.disabled=false;}
+      else {cartButtonEl.disabled=true;}
+  }
+// RENDER CART ITEMS
+function renderCartItems() {
+  cartItemsEl.innerHTML = ""; // clear cart element
+  cart.forEach(item => {
+    cartItemsEl.innerHTML += `
+        <div class="cart__item grid-row">
+          <img class="cart-item-image" src="${item.image}" width="80" height="80">
+          <p class="cart__item-name" name="item-name">${item.name}</p>
+          <p class="cart__item-price">${item.price + " грн."}</p>
+          <div class="cart__item-quantity flex-row">
+            <input class="cart__item-quantity-input" type="number" min="1" value="${item.numberOfUnits}" onchange="changeNumberOfUnits(this.value, ${item.id})">
+            <button class="cart__item-quantity-button btn-delete button" type="button" onclick = "removeItemFromCart(${item.id})"></button>
+          </div>`;
+  });
+}
+
+// REMOVE ITEM FROM CART
+function removeItemFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  updateCart();
+}
+
+
+// CHANGE NUMBER OF UNITS IN A CART
+  function changeNumberOfUnits(val, id) {
+      cart = cart.map((item) => {
+      let numberOfUnits = item.numberOfUnits;
+  
+      if (item.id === id) {
+          numberOfUnits = val;
+      }
+      return {
+        ...item,
+        numberOfUnits,
+      };
+    });
+  
+    updateCart();
+  }
+
+//SHOW AND HIDE CART
+let cartForm = document.getElementById('cart');
+let cartBody = document.getElementById('cart-body');
+let cartIcon = document.getElementById('cart-icon');
+
+cartIcon.addEventListener("click", toggleCartVisibility);
+function toggleCartVisibility() {
+  cartForm.classList.remove('cart-hidden');
+  cartForm.classList.add('cart-shown');
+  //updateTotalCost();
+  document.addEventListener( 'click', (e) => {
+    let clickedElement = e.target;
+    if (clickedElement == cartForm ) {
+      cartForm.classList.remove('cart-shown');
+      cartForm.classList.add('cart-hidden');
+    }
+  });
+}
 
 
 
+
+
+
+// old script for the Cart
+/* 
 //add listener for all catalog buttons
 let addToCartButtons = document.getElementsByClassName('btn-addToCart');
 for (let i = 0; i < addToCartButtons.length; i++) {
@@ -20,7 +163,7 @@ function addToCartClicked(event) {
   addItemToCart(itemName, itemPrice, imageSrc);
 }
 
-/* --Add and deliting items from the cart--*/
+//Add and deliting items from the cart
 
 function addItemToCart(itemName, itemPrice, imageSrc) {
   let cartRow = document.createElement('div');
@@ -175,3 +318,4 @@ function purchaseClicked() {
     document.getElementById('cart').reset();
     emptyCartCheck ();
   }
+  */

@@ -40,11 +40,10 @@ let validateForms = function(selector, rules) {
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === 4) {
 					if (xhr.status === 200) {
-						Swal.fire({
+						swal.fire({
               title: 'Дякуємо!',
               text: 'Мы отримали ваше повідомлення і передзвонимо найближчим часом.',
-              success: 'success',
-              scrollbarPadding: false,
+              icon: 'success',
             });
 					}
 				}
@@ -54,6 +53,30 @@ let validateForms = function(selector, rules) {
 			xhr.send(formData);
 
 			form.reset();
+		},
+
+
+    submitHandler: function(cart) {
+			let formData = new FormData(cart);
+
+			let xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						swal.fire({
+              title: 'Дякуємо!',
+              text: 'Мы отримали ваше замовлення і передзвонимо найближчим часом.',
+              icon: 'success',
+            });
+					}
+				}
+			}
+
+			xhr.open('POST', 'sendorder.php', true);
+			xhr.send(formData);
+
+			cart.reset();
 		}
 	});
 }

@@ -302,77 +302,8 @@
             <section class="section page-05-catalog" id="catalog">
                 <div class="container">
                     <h2 class="section__title">КАТАЛОГ</h2>
-                    <div class="section__body">
-
-                            <div class="item">
-                                <div class="item-wrap">
-                                    <img class="item__img" src="img/tovar_1.png" alt="item-1">
-                                    <p class="item__describe" id="item-1-describe">Рекомендується до
-                                        використання в якості стандартного рішення для безпечної роботи домашньої техніки.</p>
-                                </div>
-                                <h3 class="item__name" id="item-1-name"></h3>
-                                <p class="item__price" id="item-1-price"></p>
-                                <button class="item__button btn-addToCart button" id="item-1-button">В корзину</button>
-                            </div>
-
-                            <div class="item">
-                                <div class="item-wrap">
-                                    <img class="item__img" src="img/tovar_2.png" alt="item-2">
-                                    <p class="item__describe" id="item-2-describe">Використовується при
-                                        монтажі захисного заземлення в глиністих і чорноземних грунтах.</p>
-                                </div>
-                                <h3 class="item__name" id="item-2-name"></h3>
-                                <p class="item__price" id="item-2-price"></p>
-                                <button class="item__button btn-addToCart button" id="item-2-button">В корзину</button>
-                            </div>
-
-                            <div class="item">
-                                <div class="item-wrap">
-                                    <img class="item__img" src="img/tovar_3.png" alt="item-3">
-                                    <p class="item__describe" id="item-3-describe">Використовується для
-                                        монтажу захисного заземлення в складних грунтах (пісок, супісок).</p>
-                                </div>
-                                <h3 class="item__name" id="item-3-name"></h3>
-                                <p class="item__price" id="item-3-price"></p>
-                                <button class="item__button btn-addToCart button" id="item-3-button">В корзину</button>
-                            </div>
-
-                            <div class="item">
-                                <div class="item-wrap">
-                                    <img class="item__img" src="img/tovar_4.png" alt="item-4">
-                                    <p class="item__describe" id="item-4-describe">Вісокоміцна сталева насадка для монтажу заземлювача
-                                        електричним вібромолотом з
-                                        патроном SDS-Max.</p>
-                                </div>
-                                <h3 class="item__name" id="item-4-name"></h3>
-                                <p class="item__price" id="item-4-price"></p>
-                                <button class="item__button btn-addToCart button" id="item-4-button">В корзину</button>
-                            </div>
-                
-                            <div class="item">
-                                <div class="item-wrap">
-                                    <img class="item__img" src="img/tovar_5.png" alt="item-5">
-                                    <p class="item__describe" id="item-5-describe">Забезпечує зручний доступ до заземлювача з метою проведення
-                                        регламентних оглядів та
-                                        вимірювань.</p>
-                                </div>
-                                <h3 class="item__name" id="item-5-name"></h3>
-                                <p class="item__price" id="item-5-price"></p>
-                                <button class="item__button btn-addToCart button" id="item-5-button">В корзину</button>
-                            </div>
-
-                            <div class="item">
-                                <div class="item-wrap">
-                                    <img class="item__img" src="img/tovar_6.png" alt="item-6">
-                                    <p class="item__describe" id="item-6-describe">Встановлюється в електрощиті або безпосередньо біля
-                                        обладнання, яке необхідно
-                                        заземлити.</p>
-                                </div>
-                                <h3 class="item__name" id="item-6-name"></h3>
-                                <p class="item__price" id="item-6-price"></p>
-                                <button class="item__button btn-addToCart button" id="item-6-button">В корзину</button>
-                            </div>
-                        
+                    <div class="section__body products">
+                        <!-- render products here -->
                     </div>
                 </div>
             </section>
@@ -513,7 +444,7 @@
 
     </div>
 
-    <form class="cart cart-hidden" id="cart">
+    <form class="cart form cart-hidden" id="cart" name="cart" action="./sendorder.php" method="POST" enctype="multipart/form-data">
         <div class="cart__body" id="cart-body">
             <div class="cart__header grid-row">
                 <p class="cart__header-text">товар</p>
@@ -523,7 +454,7 @@
             <div class="cart__items" id="cartItems"></div>
             <div class="cart__total flex-row">
                 <p class="cart__total-text">Загальна сума:</p>
-                <p class="cart__total-text cart__total-text_normal" id="cartTotalCost">0 грн.</p>
+                <p class="cart__total-text cart__total-text_normal cart__total-cost" id="cartTotalCost">0 грн.</p>
             </div>
             <div class="cart__customer-info">
                 <div class="flex-row">
@@ -535,7 +466,7 @@
                     <label class="cart__label"><input class="cart__input" id="userMail" name="email" type="email" data-validate-field="mail" placeholder="Ваш e-mail*"></label>    
                 </div>
             </div>
-            <div class="flex-row">
+            <div class="flex">
                 <textarea class="cart__message" name="message" type="text" placeholder="Коментар"></textarea>
             </div>
             <button class="cart__button btn-purchase button" id="btnPurchase" type="submit" disabled="">Купити</button>
@@ -560,9 +491,9 @@
     <script type="text/javascript" src="js/sweet-alert.min.js"></script>
     <script type="text/javascript" src="js/smoothscroll.min.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/price.js"></script>
+    <script type="text/javascript" src="js/products.js"></script>
     <script type="text/javascript" src="js/cart.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
 </body>
 

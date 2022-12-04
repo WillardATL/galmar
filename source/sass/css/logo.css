@@ -1,0 +1,11 @@
+.logo {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 30px;
+      -ms-flex: 0 0 30px;
+          flex: 0 0 30px;
+}
+
+.logo .logo__img {
+  display: block;
+  max-width: 100%;
+}
